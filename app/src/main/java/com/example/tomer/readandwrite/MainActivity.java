@@ -1,4 +1,4 @@
-//Version 1.1
+//Version 1.2
 package com.example.tomer.readandwrite;
 
 import android.content.Context;
@@ -44,9 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 BufferedWriter bw = new BufferedWriter(osw);
                 try {
                     bw.write(data_st);
-                    Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "File was saved", Toast.LENGTH_SHORT).show();
                     bw.close();
                 } catch (IOException e) {
+                    Toast.makeText(this, "File was not saved", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             } catch (FileNotFoundException e) {
@@ -61,5 +62,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ReadFromFile(View view) {
+        try {
+            InputStream is = openFileInput("albert.txt");
+            InputStreamReader tmp = new InputStreamReader(is);
+            BufferedReader reader = new BufferedReader(tmp);
+            StringBuffer buffer = new StringBuffer();
+
+            while((data_st = reader.readLine())!= null){
+                buffer.append(data_st + "\n");
+            }
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            tv.setText(buffer);
+            Toast.makeText(this, "Data from file was read", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Data from file was not read", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

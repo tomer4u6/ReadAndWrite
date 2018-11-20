@@ -27,7 +27,7 @@
             android:layout_weight="1.5"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Enter input" />
+            android:hint="Enter data" />
 
         <Button
             android:layout_width="0dp"
@@ -57,6 +57,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1.8"
             android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="#000"
             android:text="Data is displayed here" />
 
         <LinearLayout
